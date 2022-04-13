@@ -1,0 +1,22 @@
+@model Hobby;
+@{
+    int UserID = (int)Context.Session.GetInt32("uid");
+}
+
+<div class="header">
+        <p><a href="/dashboard">Dashboard</a> | <a href="/logout">Logout</a></p>
+</div>
+<div class="body">
+    <h2>@Model.Name</h2>
+    <p>@Model.Description</p>
+    <h3>@Model.Name Enthusiasts:</h3>
+    @{
+        foreach (Association a in Model.Enthusiasts)
+        {
+            <p>@a.HobbiesUsers.FirstName @a.HobbiesUsers.LastName</p>
+
+        }
+    }
+</div>
+
+@* <a href="/hoppy/edit/@Model.HobbyId"><button>Edit Hobby</button></a> *@

@@ -1,0 +1,50 @@
+@model List<Hobby>;
+@{
+    int UserID = (int)Context.Session.GetInt32("uid");
+}
+<div class="header">
+    <h3>Welcome !! </h3>
+        <h3>Success Login</h3>
+    <p><a href="/logout">Log Out</a></p>
+</div>
+<div>
+    <a href="/hobby/new"><button>Create a Hobby</button></a>
+</div>
+<div class="content">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <td>Name</td>
+                <td>Enthusiasts</td>
+                <td>Action</td>
+
+            </tr>
+        </thead>
+<tbody>
+            @{
+                foreach (Hobby e in Model)
+                {
+                    <tr>
+                        <td><a href="/hobby/@e.HobbyId">@e.Name</a></td>
+                        <td>@e.Enthusiasts.Count</td>
+                        <td>
+                            @{
+                                // if this user is creator, delete button
+                                if (e.Creator.UserId == UserID)
+                                {
+                                    <a href="#"><button>Edit Event</button></a>
+
+                                }
+                                else
+                                {
+                                    <a href="/hobby/join/@e.HobbyId"><button>Add to Hobbies</button></a>
+                                }
+                                // else if joined, unjoin, and vice versa
+                            }
+                        </td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+</div>

@@ -1,0 +1,19 @@
+@model LoginUser;
+<h3>
+    Login
+</h3>
+<div class="col-5">
+<form asp-action="ProcessLogin" asp-controller="User" method="post">
+    <div class="form-group">
+        <p><span asp-validation-for="logUserName" class="text-danger"></span></p>
+        <label asp-for="logUserName">User Name</label>
+        <input asp-for="logUserName" />
+    </div>
+    <div class="form-group">
+        <p><span asp-validation-for="logPassword" class="text-danger"></span></p>
+        <label asp-for="logPassword"></label>
+        <input asp-for="logPassword" />
+    </div>
+    <button class="btn btn-primary">Log In</button>
+</form>
+</div>
